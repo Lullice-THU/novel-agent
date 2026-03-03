@@ -1,144 +1,209 @@
-# NovelAgent - AI网文创作团队
+# NovelAgent - 工业级AI网文创作系统
 
-![Python](https://img.shields.io/badge/python-3.8+-blue)
-![License](https://img.shields.io/badge/license-MIT-green)
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.8+-blue?style=flat-square" alt="Python">
+  <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="License">
+  <img src="https://img.shields.io/badge/DeepSeek-V3-FF6B6B?style=flat-square" alt="Model">
+</p>
 
-基于Multi-Agent架构的AI网文创作系统，模拟专业网文编辑团队的工作流程。
+> ⚡ 真正接入LLM的多Agent协作网文创作系统 | 参考星月写作模式 | 工业化质量
 
-## 🎯 项目背景
+## 🎯 项目定位
 
-参考星月写作等成功案例，采用"人机协作"模式：
-- **AI负责**: 扩写、润色、过渡、细节描写
-- **人类负责**: 核心创意、关键情节、审核把关
-
-## 🏗️ 架构
+**不只是简单的脚本，而是一套完整的AI创作解决方案。**
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│                    NovelAgent 团队                       │
-├─────────────────────────────────────────────────────────┤
-│  📝 策划师 (Planner)                                    │
-│  - 世界观设计                                           │
-│  - 故事大纲                                             │
-│  - 人物设定                                             │
-├─────────────────────────────────────────────────────────┤
-│  ✍️ 作家 (Writer)                                       │
-│  - 章节扩写                                             │
-│  - 对话生成                                             │
-│  - 场景描写                                             │
-├─────────────────────────────────────────────────────────┤
-│  🔍 审核 (Editor)                                      │
-│  - 爽点检查                                             │
-│  - 节奏把控                                             │
-│  - 质量把关                                             │
-└─────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────┐
+│                        NovelAgent 架构                               │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                      │
+│  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐       │
+│  │   Planner    │    │   Writer     │    │   Editor     │       │
+│  │   策划师      │───▶│   作家       │───▶│   审核        │       │
+│  │              │    │              │    │              │       │
+│  │ • 世界观     │    │ • 章节扩写   │    │ • 爽点检测   │       │
+│  │ • 大纲设计   │    │ • 对话生成   │    │ • 节奏把控   │       │
+│  │ • 人物设定   │    │ • 场景描写   │    │ • 质量把关   │       │
+│  └──────────────┘    └──────────────┘    └──────────────┘       │
+│                                                                      │
+│  ┌──────────────────────────────────────────────────────────────┐   │
+│  │                    LLM Layer (DeepSeek V3)                  │   │
+│  └──────────────────────────────────────────────────────────────┘   │
+│                                                                      │
+└─────────────────────────────────────────────────────────────────────┘
 ```
 
-## 功能
+## ✨ 核心特性
 
-### 📖 支持的网文类型
-- 都市爽文
-- 玄幻修仙
-- 系统流
-- 穿越重生
-- 甜宠文
-- 悬疑推理
+| 特性 | 说明 |
+|------|------|
+| 🤖 **真LLM接入** | 接入DeepSeek V3 API，非简单模板 |
+| 👥 **多Agent协作** | 策划→写作→审核，完整流程 |
+| 🎯 **爽点系统** | 内置网文爽点模式库 |
+| 📊 **质量审核** | 自动检测爽点密度、节奏、逻辑 |
+| 🔄 **迭代优化** | 审核→修改→再审核闭环 |
+| 📖 **多题材支持** | 都市/玄幻/系统/仙侠/穿越 |
 
-### ⚡ 核心能力
-1. **大纲生成** - 输入题材，快速生成完整大纲
-2. **章节扩写** - 输入细纲，扩展为3000+字章节
-3. **多轮润色** - 优化文笔，提升阅读体验
-4. **爽点检测** - 自动识别爽点密度
+## 🚀 快速开始
 
-## 安装
+### 安装
 
 ```bash
+git clone https://github.com/Lullice-THU/novel-agent.git
+cd novel-agent
 pip install -r requirements.txt
 ```
 
-## 使用
-
-### 快速开始
-```bash
-python main.py --genre 都市 --title 超级赘婿 --synopsis "上门女婿逆袭记"
-```
-
-### 详细模式
-```bash
-python main.py --interactive
-```
-
 ### 配置API
+
 ```bash
-export OPENAI_API_KEY="your-key"
-# 或使用国产模型
-export API_BASE="https://api.deepseek.com"
-export API_KEY="your-deepseek-key"
+# 方式1: 环境变量
+export DEEPSEEK_API_KEY="your-api-key"
+
+# 方式2: 命令行
+python novel_agent_core.py --api-key "your-api-key" ...
 ```
 
-## 项目结构
+### 使用
+
+```bash
+# 命令行模式
+python novel_agent_core.py \
+  --genre 都市 \
+  --title 超级赘婿 \
+  --synopsis "上门女婿逆袭成首富" \
+  --chapters 5
+
+# 输出
+# [16:30:00] 正在生成大纲...
+# [16:30:05] 正在写作第1章...
+# [16:30:15] 正在审核第1章...
+# ✅ 已保存: output/第1章_第一章.txt
+```
+
+## 📁 项目结构
 
 ```
 novel-agent/
-├── agents/
-│   ├── __init__.py
-│   ├── planner.py      # 策划师Agent
-│   ├── writer.py       # 作家Agent
-│   └── editor.py       # 审核Agent
-├── prompts/
-│   ├── planner.md      # 策划师提示词
-│   ├── writer.md       # 作家提示词
-│   └── editor.md       # 审核提示词
-├── utils/
-│   ├── __init__.py
-│   └── config.py       # 配置管理
-├── main.py             # 入口
-└── requirements.txt
+├── novel_agent_core.py   # 核心引擎 (LLM接入版)
+├── agents/              # Agent模块 (模板版)
+├── prompts/             # 提示词库
+│   └── 爽点系统.md     # 🎯 核心爽点模式库
+├── main.py              # CLI入口
+├── requirements.txt     # 依赖
+└── README.md
 ```
 
-## 提示词工程
+## 🎯 核心优势
 
-### 策划师 (Planner)
-负责世界观、人物、故事线的整体设计
+### 1. 工业级Prompt工程
 
-### 作家 (Writer)
-根据大纲进行具体内容创作，注重：
-- 节奏紧凑
-- 爽点密集
-- 对话自然
+```python
+# 策划师System Prompt示例
+SYSTEM_PROMPT = """你是一位资深网文策划大师，精通各类网文套路和爽点设计。
 
-### 审核 (Editor)
-从读者视角审核内容：
-- 爽点是否足够
-- 节奏是否拖沓
-- 是否有bug
+【擅长类型】
+- 都市爽文（神豪，系统、鉴宝、医武）
+- 玄幻修仙（血脉、功法、宗门、异火）
+...
 
-## 案例
+【输出格式】
+请严格按照JSON格式输出...
+"""
+```
+
+### 2. 爽点系统库
+
+内置6大类、30+小类网文爽点模式：
+
+- ✅ 打脸反转
+- ✅ 英雄救美
+- ✅ 获得奇遇
+- ✅ 越级挑战
+- ✅ 身份打脸
+- ✅ 系统任务
+
+### 3. 质量闭环
+
+```
+写作 → 审核 → 问题反馈 → 改写 → 再次审核 → 通过
+```
+
+## 📊 效果示例
 
 ### 输入
-```
-题材: 都市系统流
-书名: 史上最强外卖员
-简介: 意外获得外卖系统，从此走上人生巅峰
-```
 
-### 输出 (第一章大纲)
 ```
-第1章: 激活系统
-- 场景: 雨夜送餐
-- 冲突: 被顾客投诉
-- 系统: 意外觉醒外卖系统
-- 爽点: 系统奖励100万现金
-- 期待: 主角从此开挂
+类型: 都市
+书名: 超级赘婿
+简介: 上门女婿逆袭成首富
 ```
 
-## 变现思路
+### 输出 (第1章大纲)
 
-1. **小说平台发布** - 起点、番茄、七猫
-2. **付费教程** - 出售"AI网文写作"教程
-3. **代笔服务** - 为他人代写小说
-4. **工具产品化** - 打包成SaaS工具
+```json
+{
+  "title": "第一章 雨夜转折",
+  "summary": "主角在雨夜被丈母娘赶出家门，意外获得神豪系统",
+  "key_points": [
+    "雨夜被羞辱场景",
+    "系统激活",
+    "获得启动资金",
+    "丈母娘态度转变"
+  ],
+  "爽点": ["身份打脸", "系统奖励", "反转"]
+}
+```
 
-## License
+## 🔧 自定义配置
 
-MIT
+### 修改LLM配置
+
+```python
+from novel_agent_core import LLMConfig, LLMWrapper, ModelProvider
+
+config = LLMConfig(
+    provider=ModelProvider.DEEPSEEK,
+    api_key="your-key",
+    base_url="https://api.deepseek.com",
+    model="deepseek-chat",
+    temperature=0.8,
+    max_tokens=4096,
+)
+
+llm = LLMWrapper(config)
+```
+
+### 添加新题材
+
+```python
+# 在 prompts/爽点系统.md 中添加
+STYLE_PROMPTS["新题材"] = "你的风格提示词"
+```
+
+## 📈 变现思路
+
+1. **小说发布** - 起点/番茄/七猫赚稿费
+2. **教程变现** - 出售"AI网文写作"课程
+3. **代写服务** - 专业代写小说
+4. **工具SaaS** - 打包成在线工具
+
+## 📋 要求
+
+- Python 3.8+
+- DeepSeek API Key / OpenAI API Key
+- 网络访问 (API调用)
+
+## 🤝 贡献
+
+欢迎提交PR！
+
+## 📄 License
+
+MIT License
+
+---
+
+<p align="center">
+  Made with ❤️ by NovelAgent
+</p>
