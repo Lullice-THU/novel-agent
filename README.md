@@ -4,9 +4,15 @@
   <img src="https://img.shields.io/badge/Python-3.8+-blue?style=flat-square" alt="Python">
   <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" alt="License">
   <img src="https://img.shields.io/badge/DeepSeek-V3-FF6B6B?style=flat-square" alt="Model">
+  <a href="https://github.com/Lullice-THU/novel-agent/stargazers"><img src="https://img.shields.io/github/stars/Lullice-THU/novel-agent?style=social" alt="Stars"></a>
+  <a href="https://github.com/Lullice-THU/novel-agent/stargazers"><img src="https://img.shields.io/github/stars/Lullice-THU/novel-agent?style=social" alt="Stars"></a>
 </p>
 
 > ⚡ 真正接入LLM的多Agent协作网文创作系统 | 参考星月写作模式 | 工业化质量
+
+## ⭐ 如果对你有帮助
+
+请给我们点个 Star ⭐ | 你的支持是我们继续创作的动力！
 
 ## 🎯 项目定位
 
